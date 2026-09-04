@@ -1,155 +1,1123 @@
 <!DOCTYPE html>
-<!--
-  ================================================================
-  READ THIS BEFORE YOU PASTE ANYTHING
-
-  When Gemini gives you a page, you do NOT paste it into a part of
-  this file. You replace the entire file.
-
-  Click into the editor, press Ctrl+A (Cmd+A on Mac), press Delete,
-  then paste. Everything here is meant to be thrown away.
-
-  Do that only AFTER your live link works. Get the link first.
-  ================================================================
--->
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My first site</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0d1d30;
-    --card: #142a44;
-    --line: #27466a;
-    --aqua: #6de1d7;
-    --text: #ffffff;
-    --muted: #94a9bf;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--navy);
-    color: var(--text);
-    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    padding: 6vh 20px;
-  }
-  main { width: 100%; max-width: 640px; }
-  .badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin-bottom: 18px;
-  }
-  h1 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 800;
-    font-size: clamp(38px, 9vw, 68px);
-    letter-spacing: -0.05em;
-    line-height: 1.02;
-    margin: 0 0 8px;
-  }
-  .name {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: clamp(18px, 4vw, 24px);
-    letter-spacing: -0.04em;
-    color: var(--aqua);
-    margin: 0 0 24px;
-  }
-  p.lead { font-size: 18px; color: var(--muted); margin: 0 0 34px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 26px 28px;
-    margin-bottom: 18px;
-  }
-  .card h2 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin: 0 0 16px;
-  }
-  ol { margin: 0; padding-left: 20px; }
-  li { margin-bottom: 12px; color: var(--muted); }
-  li:last-child { margin-bottom: 0; }
-  li b { color: var(--text); font-weight: 700; }
-  code {
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 0.92em;
-    background: #0a1727;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    padding: 1px 6px;
-    color: var(--aqua);
-  }
-  a { color: var(--aqua); }
-  footer {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #6e839a;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeQuant // AI Market Analysis & Prompt Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #07090e;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --bg-card-hover: rgba(23, 32, 54, 0.8);
+            --border-glow: rgba(56, 189, 248, 0.2);
+            --border-active: rgba(168, 85, 247, 0.5);
+            
+            --neon-cyan: #38bdf8;
+            --neon-purple: #c084fc;
+            --neon-green: #4ade80;
+            --neon-pink: #f472b6;
+            --neon-amber: #fbbf24;
+            --neon-red: #f87171;
+            
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+
+            --font-mono: 'JetBrains Mono', monospace;
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-mono);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(192, 132, 252, 0.08) 0%, transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 15, 26, 0.8);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-cyan);
+        }
+
+        header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-badge {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #000;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .logo-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .logo-title span {
+            color: var(--neon-cyan);
+        }
+
+        .vibe-tag {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 4px;
+            color: var(--neon-cyan);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dot-live {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Ticker Bar */
+        .ticker-wrap {
+            width: 100%;
+            background: rgba(3, 5, 10, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 6px 0;
+        }
+
+        .ticker-move {
+            display: inline-block;
+            animation: ticker 35s linear infinite;
+        }
+
+        .ticker-move:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0 1.5rem;
+            font-size: 0.75rem;
+        }
+
+        .ticker-symbol {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .ticker-val {
+            color: var(--text-muted);
+        }
+
+        .ticker-change.up {
+            color: var(--neon-green);
+        }
+
+        .ticker-change.down {
+            color: var(--neon-red);
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        main {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.25rem;
+        }
+
+        /* Glass Panel Generic */
+        .glass-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: var(--glass-shadow);
+            transition: border-color 0.3s ease, transform 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .panel-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Controls / Mode Switches */
+        .btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--neon-cyan);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-active {
+            background: var(--neon-cyan);
+            color: #000;
+            font-weight: 700;
+            border-color: var(--neon-cyan);
+        }
+
+        .btn-active:hover {
+            background: #7dd3fc;
+            color: #000;
+        }
+
+        /* GRID SPECIFIC LAYOUT */
+        .col-span-12 { grid-column: span 12; }
+        .col-span-8  { grid-column: span 8; }
+        .col-span-4  { grid-column: span 4; }
+        .col-span-6  { grid-column: span 6; }
+        .col-span-3  { grid-column: span 3; }
+
+        @media (max-width: 1024px) {
+            .col-span-8, .col-span-4, .col-span-6, .col-span-3 {
+                grid-column: span 12;
+            }
+        }
+
+        .vibe-hero {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .vibe-meter-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10, 15, 28, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .vibe-score {
+            text-align: center;
+        }
+
+        .vibe-score-val {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+        }
+
+        .vibe-score-label {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            margin-top: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vibe-gauge-wrap {
+            flex-grow: 1;
+            margin: 0 2rem;
+        }
+
+        .vibe-bar-bg {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .vibe-bar-fill {
+            height: 100%;
+            width: 78%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-amber), var(--neon-cyan), var(--neon-green));
+            border-radius: 6px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 12px rgba(74, 222, 128, 0.5);
+        }
+
+        .vibe-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            margin-top: 0.4rem;
+        }
+
+        /* Chart Canvas Wrappers */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Code / Prompt Terminal */
+        .terminal-box {
+            background: rgba(3, 7, 18, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: var(--font-mono);
+            position: relative;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 0.75rem;
+        }
+
+        .term-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .term-dot.red { background: #f87171; }
+        .term-dot.yellow { background: #fbbf24; }
+        .term-dot.green { background: #4ade80; }
+
+        .terminal-title {
+            margin-left: auto;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+        }
+
+        .code-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--neon-cyan);
+            font-size: 0.85rem;
+            resize: none;
+            outline: none;
+            min-height: 80px;
+            line-height: 1.4;
+        }
+
+        .prompt-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .pill {
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            background: rgba(192, 132, 252, 0.05);
+        }
+
+        /* Data Breakdown Cards */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.8rem;
+            border-radius: 8px;
+        }
+
+        .metric-title {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        .metric-val {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0.2rem 0;
+        }
+
+        .metric-sub {
+            font-size: 0.65rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .text-green { color: var(--neon-green); }
+        .text-red { color: var(--neon-red); }
+        .text-cyan { color: var(--neon-cyan); }
+        .text-purple { color: var(--neon-purple); }
+
+        /* Vibe Signal Feed */
+        .feed-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .feed-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--neon-cyan);
+            padding: 0.6rem 0.8rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .feed-item.bullish { border-left-color: var(--neon-green); }
+        .feed-item.bearish { border-left-color: var(--neon-red); }
+        .feed-item.warning { border-left-color: var(--neon-amber); }
+
+        .feed-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+        }
+
+        .feed-txt {
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        /* Tooltip style for chart */
+        #chart-tooltip {
+            position: absolute;
+            display: none;
+            background: rgba(10, 15, 28, 0.95);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 0.7rem;
+            color: #fff;
+            pointer-events: none;
+            z-index: 50;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Pulse animation for generated prompts */
+        .glow-pulse {
+            animation: borderPulse 2s infinite alternate;
+        }
+
+        @keyframes borderPulse {
+            0% { border-color: rgba(56, 189, 248, 0.3); }
+            100% { border-color: rgba(192, 132, 252, 0.8); box-shadow: 0 0 15px rgba(192, 132, 252, 0.2); }
+        }
+    </style>
 </head>
 <body>
-<main>
 
-  <span class="badge">Cal Poly Vibe Coding &middot; Session 01</span>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo-area">
+                <div class="logo-badge">VQ</div>
+                <div>
+                    <div class="logo-title">VIBE<span>QUANT</span></div>
+                </div>
+                <span class="vibe-tag">AI-3.5 PRO</span>
+            </a>
 
-  <h1>It&rsquo;s live.</h1>
+            <div class="nav-actions">
+                <div class="status-pill">
+                    <span class="dot-live"></span>
+                    <span>LIVE MARKET VIBES</span>
+                </div>
+                <button class="btn" id="btn-reseed">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                    Re-Vibe
+                </button>
+            </div>
+        </div>
+    </header>
 
-  <!-- Step 5: change the name below to yours, then commit. -->
-  <p class="name">Built by Logan Cairns</p>
+    <!-- Stock / Crypto Live Simulation Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker-move" id="ticker-content">
+            <!-- Ticker items dynamically injected via JS -->
+        </div>
+    </div>
 
-  <p class="lead">
-    This page is on the internet. Anyone you send this link to can open it,
-    on any device, right now. You made that happen in about five minutes.
-  </p>
+    <main>
+        <!-- Top Row: Market Vibe & Overview Hero (Span 8) -->
+        <section class="glass-panel col-span-8 vibe-hero">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    Real-time Market Vibe Matrix
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-active" data-tf="1h">1H</button>
+                    <button class="btn" data-tf="24h">24H</button>
+                    <button class="btn" data-tf="7d">7D</button>
+                </div>
+            </div>
 
-  <div class="card">
-    <h2>Three things, in this order</h2>
-    <ol>
-      <li><b>Put your name on it.</b> Edit <code>index.html</code>, change
-        YOUR NAME HERE above, commit, refresh this page.</li>
-      <li><b>Submit this link.</b> Go to
-        <a href="https://www.calpolyvibecoding.com/">calpolyvibecoding.com</a>,
-        make an account, and paste this URL in. That is how you get counted,
-        and how Claude seats get assigned.</li>
-      <li><b>Then build.</b> Open Gemini, get a page, and replace this entire
-        file with it.</li>
-    </ol>
-  </div>
+            <!-- Vibe Meter Bar -->
+            <div class="vibe-meter-container">
+                <div class="vibe-score">
+                    <div class="vibe-score-val" id="vibe-score-num">84</div>
+                    <div class="vibe-score-label">AGGRESSIVE BULLISH VIBE</div>
+                </div>
+                <div class="vibe-gauge-wrap">
+                    <div class="vibe-bar-bg">
+                        <div class="vibe-bar-fill" id="vibe-bar"></div>
+                    </div>
+                    <div class="vibe-labels">
+                        <span>01 DOOM (BEAR)</span>
+                        <span>50 NEUTRAL</span>
+                        <span>100 HYPER (BULL)</span>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="metric-title">Vibe Momentum</div>
+                    <div class="metric-val text-green" id="vibe-mom">+14.2%</div>
+                </div>
+            </div>
 
-  <div class="card">
-    <h2>How to replace this page</h2>
-    <ol>
-      <li>Copy what Gemini gives you with the <b>copy button</b> on the code
-        block. Do not click and drag.</li>
-      <li>Open <code>index.html</code> here and click the pencil icon.</li>
-      <li><b>Ctrl+A</b> (<b>Cmd+A</b> on Mac), then <b>Delete</b>. All of it.
-        Yes, really.</li>
-      <li>Paste, commit, refresh.</li>
-    </ol>
-  </div>
+            <!-- Interactive Main Chart -->
+            <div class="chart-container" id="chart-wrapper">
+                <canvas id="mainChart"></canvas>
+                <div id="chart-tooltip"></div>
+            </div>
+        </section>
 
-  <footer>
-    Nothing on this page is precious. It exists so the link has something to
-    show before you have something of your own.
-  </footer>
+        <!-- Top Right: Vibe Coding Prompt & AI Terminal (Span 4) -->
+        <section class="glass-panel col-span-4 glow-pulse" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <div class="panel-header">
+                    <div class="panel-title" style="color: var(--neon-purple);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        Vibe Coding Prompt Lab
+                    </div>
+                    <span style="font-size: 0.65rem; color: var(--text-dim);">AUTO-GEN</span>
+                </div>
 
-</main>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.4;">
+                    Generate algorithmic trading strategies & pine script models directly from live market vibes.
+                </p>
+
+                <div class="terminal-box">
+                    <div class="terminal-header">
+                        <span class="term-dot red"></span>
+                        <span class="term-dot yellow"></span>
+                        <span class="term-dot green"></span>
+                        <span class="terminal-title">strategy_agent.py</span>
+                    </div>
+                    <textarea class="code-input" id="prompt-input" spellcheck="false">// Vibe Prompt Strategy Output
+def vibe_strategy(data, vibe_score=84):
+    if vibe_score > 75 and data['rsi'] < 65:
+        return "HYPER_LONG_CALL"
+    elif vibe_score < 30:
+        return "SHORT_HEDGE_DELTA"
+    return "HODL_GRID"</textarea>
+                </div>
+
+                <div class="prompt-pills">
+                    <div class="pill" onclick="loadPrompt('volatility')">⚡ High Volatility Scale</div>
+                    <div class="pill" onclick="loadPrompt('arbitrage')">🔄 Cross-Chain Arb</div>
+                    <div class="pill" onclick="loadPrompt('sentiment')">🧠 Twitter Sentiment Scalper</div>
+                </div>
+            </div>
+
+            <button class="btn btn-active" id="btn-run-code" style="width: 100%; justify-content: center; margin-top: 1rem; padding: 0.6rem;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Execute Vibe Algorithm
+            </button>
+        </section>
+
+        <!-- Middle Row: Market Breakdown Metrics (Span 4) -->
+        <section class="glass-panel col-span-4">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Vibe Telemetry
+                </div>
+            </div>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Retail Sentiment</div>
+                    <div class="metric-val text-cyan" id="m-retail">92%</div>
+                    <div class="metric-sub text-green">▲ Extremely Bullish</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Whale Accumulation</div>
+                    <div class="metric-val text-purple" id="m-whale">$4.2B</div>
+                    <div class="metric-sub text-green">▲ Active Buying</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Options Vol (IV)</div>
+                    <div class="metric-val text-amber" id="m-vol">58.4</div>
+                    <div class="metric-sub text-red">▼ Squeeze Potential</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Liquidity Depth</div>
+                    <div class="metric-val" id="m-liq">High</div>
+                    <div class="metric-sub text-cyan">● Deep Bids</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.2rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                    <span style="color: var(--text-dim);">AI Confidence Score</span>
+                    <span style="color: var(--neon-cyan); font-weight: bold;" id="confidence-text">91.4%</span>
+                </div>
+                <div style="height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden;">
+                    <div id="confidence-bar" style="width: 91.4%; height: 100%; background: var(--neon-cyan); border-radius: 3px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Middle Row: Interactive Radar/Sector Heatmap Chart (Span 4) -->
+        <section class="glass-panel col-span-4">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                    Sector Vibe Allocation
+                </div>
+            </div>
+            <div class="chart-container" style="height: 220px;">
+                <canvas id="sectorChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Middle Row: Live Sentiment Stream (Span 4) -->
+        <section class="glass-panel col-span-4">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Live Vibe Feed Signals
+                </div>
+                <span class="dot-live"></span>
+            </div>
+
+            <div class="feed-list" id="feed-container">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- DATA & STATE MANAGEMENT ---
+        const tickers = [
+            { symbol: 'NVDA', price: 128.45, change: +3.42 },
+            { symbol: 'BTC/USD', price: 68420.00, change: +5.12 },
+            { symbol: 'ETH/USD', price: 3540.80, change: +2.84 },
+            { symbol: 'TSLA', price: 242.10, change: -1.15 },
+            { symbol: 'AAPL', price: 224.30, change: +0.65 },
+            { symbol: 'SOL/USD', price: 184.25, change: +8.90 },
+            { symbol: 'SPY', price: 554.20, change: +0.45 },
+            { symbol: 'QQQ', price: 482.10, change: +1.05 }
+        ];
+
+        let vibeScore = 84;
+        let chartData = [];
+        const chartLength = 40;
+
+        // --- TICKER ANIMATION INIT ---
+        function initTicker() {
+            const container = document.getElementById('ticker-content');
+            let html = '';
+            // Duplicate array for seamless infinite scroll
+            const doubled = [...tickers, ...tickers, ...tickers];
+            doubled.forEach(t => {
+                const isUp = t.change >= 0;
+                const changeClass = isUp ? 'up' : 'down';
+                const sign = isUp ? '+' : '';
+                html += `
+                    <div class="ticker-item">
+                        <span class="ticker-symbol">${t.symbol}</span>
+                        <span class="ticker-val">$${t.price.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                        <span class="ticker-change ${changeClass}">${sign}${t.change.toFixed(2)}%</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // --- MAIN CANVAS TIME-SERIES CHART ---
+        const canvas = document.getElementById('mainChart');
+        const ctx = canvas.getContext('2d');
+        const tooltip = document.getElementById('chart-tooltip');
+
+        function generateChartData() {
+            chartData = [];
+            let currentVal = 100;
+            for (let i = 0; i < chartLength; i++) {
+                const noise = (Math.random() - 0.45) * 6;
+                currentVal += noise;
+                chartData.push({
+                    x: i,
+                    y: Math.max(50, currentVal),
+                    vibe: Math.min(100, Math.max(10, currentVal * 0.8 + Math.random() * 20))
+                });
+            }
+        }
+
+        function resizeCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            drawMainChart();
+        }
+
+        function drawMainChart() {
+            const width = canvas.width / window.devicePixelRatio;
+            const height = canvas.height / window.devicePixelRatio;
+
+            ctx.clearRect(0, 0, width, height);
+
+            if (chartData.length === 0) return;
+
+            const padding = 30;
+            const chartW = width - padding * 2;
+            const chartH = height - padding * 2;
+
+            const minY = Math.min(...chartData.map(d => d.y)) - 5;
+            const maxY = Math.max(...chartData.map(d => d.y)) + 5;
+
+            // Draw Grid Lines
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+            ctx.lineWidth = 1;
+            const rows = 5;
+            for (let i = 0; i <= rows; i++) {
+                const y = padding + (chartH / rows) * i;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(width - padding, y);
+                ctx.stroke();
+            }
+
+            // Draw Gradient Area under Line
+            const gradient = ctx.createLinearGradient(0, padding, 0, height - padding);
+            gradient.addColorStop(0, 'rgba(56, 189, 248, 0.35)');
+            gradient.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
+
+            ctx.beginPath();
+            chartData.forEach((d, i) => {
+                const x = padding + (i / (chartLength - 1)) * chartW;
+                const y = height - padding - ((d.y - minY) / (maxY - minY)) * chartH;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+
+            // Path close for fill
+            const lastX = padding + chartW;
+            const firstX = padding;
+            const bottomY = height - padding;
+            
+            ctx.lineTo(lastX, bottomY);
+            ctx.lineTo(firstX, bottomY);
+            ctx.closePath();
+            ctx.fillStyle = gradient;
+            ctx.fill();
+
+            // Draw Neon Stroke Line
+            ctx.beginPath();
+            chartData.forEach((d, i) => {
+                const x = padding + (i / (chartLength - 1)) * chartW;
+                const y = height - padding - ((d.y - minY) / (maxY - minY)) * chartH;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 3;
+            ctx.shadowColor = '#38bdf8';
+            ctx.shadowBlur = 12;
+            ctx.stroke();
+            ctx.shadowBlur = 0; // reset
+
+            // Draw Data Glowing Points
+            chartData.forEach((d, i) => {
+                if (i % 5 === 0 || i === chartLength - 1) {
+                    const x = padding + (i / (chartLength - 1)) * chartW;
+                    const y = height - padding - ((d.y - minY) / (maxY - minY)) * chartH;
+
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4, 0, Math.PI * 2);
+                    ctx.fillStyle = '#c084fc';
+                    ctx.shadowColor = '#c084fc';
+                    ctx.shadowBlur = 8;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            });
+        }
+
+        // Chart Interactive Tooltip Hover
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const width = canvas.width / window.devicePixelRatio;
+            const padding = 30;
+            const chartW = width - padding * 2;
+
+            const index = Math.round(((mouseX - padding) / chartW) * (chartLength - 1));
+            
+            if (index >= 0 && index < chartLength) {
+                const dataPoint = chartData[index];
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${e.clientX - rect.left + 15}px`;
+                tooltip.style.top = `${e.clientY - rect.top - 20}px`;
+                tooltip.innerHTML = `
+                    <div><strong>Index #${dataPoint.x}</strong></div>
+                    <div>Price Index: <span style="color: var(--neon-cyan);">${dataPoint.y.toFixed(2)}</span></div>
+                    <div>Vibe Index: <span style="color: var(--neon-purple);">${dataPoint.vibe.toFixed(1)}%</span></div>
+                `;
+            }
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+        });
+
+        const sectorCanvas = document.getElementById('sectorChart');
+        const sCtx = sectorCanvas.getContext('2d');
+
+        function drawSectorChart() {
+            const rect = sectorCanvas.parentElement.getBoundingClientRect();
+            sectorCanvas.width = rect.width * window.devicePixelRatio;
+            sectorCanvas.height = rect.height * window.devicePixelRatio;
+            sCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+            const w = rect.width;
+            const h = rect.height;
+            const cX = w / 2;
+            const cY = h / 2;
+            const radius = Math.min(w, h) / 2.8;
+
+            sCtx.clearRect(0, 0, w, h);
+
+            const sectors = [
+                { name: 'AI / Compute', val: 0.35, color: '#38bdf8' },
+                { name: 'L1 Crypto', val: 0.25, color: '#c084fc' },
+                { name: 'Semis', val: 0.20, color: '#4ade80' },
+                { name: 'Fintech', val: 0.12, color: '#fbbf24' },
+                { name: 'Energy', val: 0.08, color: '#f87171' }
+            ];
+
+            let startAngle = -Math.PI / 2;
+
+            sectors.forEach(s => {
+                const sliceAngle = s.val * Math.PI * 2;
+                
+                sCtx.beginPath();
+                sCtx.arc(cX, cY, radius, startAngle, startAngle + sliceAngle);
+                sCtx.lineTo(cX, cY);
+                sCtx.fillStyle = s.color;
+                sCtx.shadowColor = s.color;
+                sCtx.shadowBlur = 8;
+                sCtx.globalAlpha = 0.85;
+                sCtx.fill();
+                sCtx.globalAlpha = 1.0;
+                sCtx.shadowBlur = 0;
+
+                // Donut Hole Cutout
+                startAngle += sliceAngle;
+            });
+
+            // Center Cutout for Donut Aesthetics
+            sCtx.beginPath();
+            sCtx.arc(cX, cY, radius * 0.55, 0, Math.PI * 2);
+            sCtx.fillStyle = '#07090e';
+            sCtx.fill();
+
+            // Legend
+            sCtx.font = '10px "JetBrains Mono"';
+            sCtx.fillStyle = '#94a3b8';
+            sCtx.fillText('DOMINANCE', cX - 26, cY - 2);
+            sCtx.fillStyle = '#38bdf8';
+            sCtx.font = 'bold 12px "JetBrains Mono"';
+            sCtx.fillText('AI / COMP', cX - 26, cY + 12);
+        }
+
+        const feedMessages = [
+            { text: 'Whale wall detected on $BTC at $68,000. Bullish order flow imbalance.', type: 'bullish', source: 'X / Sentiment Parser' },
+            { text: 'Fed Liquidity injection prompt triggered. Gamma squeeze active in $NVDA.', type: 'bullish', source: 'Options Algo' },
+            { text: 'Minor sentiment drop in Tech sector due to yields uptick.', type: 'warning', source: 'Macro Signal' },
+            { text: 'Neural Net recommends scaling into ETH/BTC pair (+4.2% projected).', type: 'bullish', source: 'Vibe Model 3.5' },
+            { text: 'Short term RSI divergence on 15m chart. Caution on leverage.', type: 'bearish', source: 'Technical Bot' }
+        ];
+
+        function populateFeed() {
+            const container = document.getElementById('feed-container');
+            container.innerHTML = '';
+            feedMessages.forEach(msg => {
+                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                container.innerHTML += `
+                    <div class="feed-item ${msg.type}">
+                        <div class="feed-meta">
+                            <span>${msg.source}</span>
+                            <span>${time}</span>
+                        </div>
+                        <div class="feed-txt">${msg.text}</div>
+                    </div>
+                `;
+            });
+        }
+
+        // Prompt Preset Handler
+        const promptPresets = {
+            volatility: `// High Volatility Breakout Filter
+def vibe_volatility_scalp(df):
+    atr = calculate_atr(df, period=14)
+    vibe_delta = df['vibe_score'].diff()
+    return df[(df['volume'] > df['vol_ma']*2) & (vibe_delta > 5)]`,
+
+            arbitrage: `// Cross-Chain Liquidity Arbitrage
+async function findVibeArb(pair) {
+    const dexA = await getPrice(DEX_SOL);
+    const dexB = await getPrice(DEX_ETH);
+    const spread = (dexA - dexB) / dexB;
+    if (spread > 0.008) executeFlashLoan(spread);
+}`,
+
+            sentiment: `// Social Sentiment Spike Detector
+def sentiment_spike(tweets, vibe_threshold=80):
+    score = nlp_model.predict(tweets)
+    if score > vibe_threshold:
+        return TriggerOrder("MARKET_BUY", leverage=3x)`
+        };
+
+        function loadPrompt(type) {
+            const textarea = document.getElementById('prompt-input');
+            if (promptPresets[type]) {
+                textarea.value = promptPresets[type];
+            }
+        }
+
+        // Randomize / Reseed Action Button ("Re-Vibe")
+        document.getElementById('btn-reseed').addEventListener('click', () => {
+            // Update Vibe Score
+            vibeScore = Math.floor(60 + Math.random() * 38);
+            document.getElementById('vibe-score-num').innerText = vibeScore;
+            document.getElementById('vibe-bar').style.width = `${vibeScore}%`;
+            
+            const mom = (Math.random() * 18).toFixed(1);
+            document.getElementById('vibe-mom').innerText = `+${mom}%`;
+
+            // Update Telemetry Metrics
+            document.getElementById('m-retail').innerText = `${Math.floor(70 + Math.random() * 25)}%`;
+            document.getElementById('m-whale').innerText = `$${(2.5 + Math.random() * 3).toFixed(1)}B`;
+            document.getElementById('m-vol').innerText = (45 + Math.random() * 30).toFixed(1);
+
+            const conf = (88 + Math.random() * 10).toFixed(1);
+            document.getElementById('confidence-text').innerText = `${conf}%`;
+            document.getElementById('confidence-bar').style.width = `${conf}%`;
+
+            // Regenerate Chart
+            generateChartData();
+            drawMainChart();
+
+            // Prepend new feed item
+            const newTypes = ['bullish', 'warning', 'bearish'];
+            const randomType = newTypes[Math.floor(Math.random() * newTypes.length)];
+            feedMessages.unshift({
+                text: `Dynamic Market Re-Vibe triggered. AI recalculating delta exposure. Score: ${vibeScore}`,
+                type: randomType,
+                source: 'User Manual Sync'
+            });
+            feedMessages.pop();
+            populateFeed();
+        });
+
+        // Run Code Action Simulator
+        document.getElementById('btn-run-code').addEventListener('click', () => {
+            const btn = document.getElementById('btn-run-code');
+            const origText = btn.innerHTML;
+            btn.innerHTML = `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+                Compiling Algorithm...
+            `;
+            btn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                btn.innerHTML = `✓ Strategy Deployed To Edge`;
+                btn.style.background = 'var(--neon-green)';
+                btn.style.color = '#000';
+                btn.style.opacity = '1';
+
+                setTimeout(() => {
+                    btn.innerHTML = origText;
+                    btn.style.background = 'var(--neon-cyan)';
+                }, 2500);
+            }, 1200);
+        });
+
+        // Timeframe selector toggles
+        document.querySelectorAll('[data-tf]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('[data-tf]').forEach(b => b.classList.remove('btn-active'));
+                e.target.classList.add('btn-active');
+                generateChartData();
+                drawMainChart();
+            });
+        });
+
+        // --- INIT WINDOW EVENTS ---
+        window.onload = () => {
+            initTicker();
+            generateChartData();
+            resizeCanvas();
+            drawSectorChart();
+            populateFeed();
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                drawSectorChart();
+            });
+        };
+    </script>
 </body>
 </html>
